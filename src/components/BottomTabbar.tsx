@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { Home, Search, User } from 'lucide-react'
+import { Home, Search, Wallet, User } from 'lucide-react'
 import { useLocation, useNavigate } from 'react-router'
 import { motion, AnimatePresence } from 'motion/react'
 import { cn } from '@/lib/utils'
@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 const tabs = [
   { id: '/', label: 'Beranda', icon: Home },
   { id: '/search', label: 'Pencarian', icon: Search },
+  { id: '/finance', label: 'Keuangan', icon: Wallet },
   { id: '/profile', label: 'Profil', icon: User },
 ]
 

@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id                String          @id @default(cuid())
+  name              String
+  email             String          @unique
+  avatarUrl         String?
+  googleId          String          @unique
+  pinHash           String?
+  failedPinAttempts Int             @default(0)
+  pinLockedUntil    DateTime?
+  createdAt         DateTime        @default(now())
+  pockets           Pocket[]
+  deviceSessions    DeviceSession[]
+}
+
+model DeviceSession {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  tokenHash  String   @unique
+  createdAt  DateTime @default(now())
+  lastUsedAt DateTime @default(now())
+}
+
+model Pocket {
+  id           String        @id @default(cuid())
+  name         String
+  balance      Int
+  icon         String
+  color        String
+  userId       String
+  user         User          @relation(fields: [userId], references: [id])
+  transactions Transaction[]
+  createdAt    DateTime      @default(now())
+}
+
+model Transaction {
+  id        String          @id @default(cuid())
+  title     String
+  amount    Int
+  type      TransactionType
+  icon      String
+  pocketId  String
+  pocket    Pocket          @relation(fields: [pocketId], references: [id])
+  createdAt DateTime        @default(now())
+}
+
+enum TransactionType {
+  income
+  expense
+}

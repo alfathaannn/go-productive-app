@@ -3,6 +3,7 @@ import AppLayout from "@/layouts/AppLayout";
 import HomePage from "@/pages/HomePage";
 import SearchPage from "@/pages/SearchPage";
 import ProfilePage from "@/pages/ProfilePage";
+import FinancePage from "@/pages/FinancePage";
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ export const router = createBrowserRouter([
       {
         path: "search",
         element: <SearchPage />,
+      },
+      {
+        path: "finance",
+        element: <FinancePage />,
       },
       {
         path: "profile",

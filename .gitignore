@@ -24,3 +24,11 @@ dist-ssr
 *.sw?
 
 reference
+
+# server
+server/node_modules
+server/dist
+server/.env
+
+# frontend env
+.env
